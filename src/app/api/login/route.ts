@@ -54,7 +54,7 @@ const refreshToken = generateRefreshToken(user._id.toString());
       httpOnly: true,
       secure: process.env.NODE_ENV === "production",
       sameSite: "strict",
-      maxAge: 7 * 24 * 60 * 60, // in seconds
+      maxAge: 7 * 24 * 60 * 60, 
     });
 
     return response;

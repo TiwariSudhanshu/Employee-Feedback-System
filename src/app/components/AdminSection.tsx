@@ -68,44 +68,46 @@ export default function AdminSection() {
   }, []);
 
   return (
-    <div className="p-6">
-      <div className="flex justify-between items-center mb-6">
-        <h1 className="text-2xl font-bold text-blue-600">Admin Panel</h1>
-        <button
-          onClick={handleLogout}
-          className="px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600"
-        >
-          Logout
-        </button>
-      </div>
-
-      <p className="mb-6 text-gray-600">Manage employee feedbacks here.</p>
-
-      {loading ? (
-        <p className="text-gray-500">Loading feedbacks...</p>
-      ) : feedbacks.length === 0 ? (
-        <p className="text-gray-500">No feedbacks found.</p>
-      ) : (
-        <div className="space-y-4">
-          {feedbacks.map((fb) => (
-            <div
-              key={fb._id}
-              className="border rounded p-4 shadow-sm bg-white"
-            >
-              <p className="text-gray-800 font-medium">
-                {fb.employeeId.username} ({fb.employeeId.email})
-              </p>
-              <p className="text-gray-700 mt-1">{fb.feedbackText}</p>
-              <button
-                onClick={() => deleteFeedback(fb._id)}
-                className="mt-3 px-3 py-1 bg-red-500 text-white text-sm rounded hover:bg-red-600"
-              >
-                Delete
-              </button>
-            </div>
-          ))}
+    <div className="min-h-screen bg-gray-100 flex items-center justify-center px-4">
+      <div className="w-full max-w-3xl bg-white p-8 rounded-2xl shadow-xl">
+        <div className="flex justify-between items-center mb-6">
+          <h1 className="text-2xl font-bold text-blue-600">Admin Panel</h1>
+          <button
+            onClick={handleLogout}
+            className="px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600"
+          >
+            Logout
+          </button>
         </div>
-      )}
+
+        <p className="mb-6 text-gray-600">Manage employee feedbacks here.</p>
+
+        {loading ? (
+          <p className="text-gray-500">Loading feedbacks...</p>
+        ) : feedbacks.length === 0 ? (
+          <p className="text-gray-500">No feedbacks found.</p>
+        ) : (
+          <div className="space-y-4">
+            {feedbacks.map((fb) => (
+              <div
+                key={fb._id}
+                className="border rounded-lg p-4 shadow-sm bg-gray-50"
+              >
+                <p className="text-gray-800 font-medium">
+                  {fb.employeeId.username} ({fb.employeeId.email})
+                </p>
+                <p className="text-gray-700 mt-1">{fb.feedbackText}</p>
+                <button
+                  onClick={() => deleteFeedback(fb._id)}
+                  className="mt-3 px-3 py-1 bg-red-500 text-white text-sm rounded hover:bg-red-600"
+                >
+                  Delete
+                </button>
+              </div>
+            ))}
+          </div>
+        )}
+      </div>
     </div>
   );
 }
