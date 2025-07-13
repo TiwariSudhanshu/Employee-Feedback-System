@@ -16,7 +16,7 @@ export async function POST(request: NextRequest) {
         }
 
     const data = await request.json();
-
+    console.log("Data received:", data);
     const { employeeId, feedbackText } = data;
     if (!employeeId || !feedbackText) {
       return NextResponse.json({ error: "All fields are required" }, { status: 400 });

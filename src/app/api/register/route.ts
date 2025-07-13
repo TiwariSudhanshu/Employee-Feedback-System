@@ -11,7 +11,7 @@ export async function POST(request: NextRequest) {
      if (!username || !email || !password) {
          return NextResponse.json({ error: "All fields are required" }, { status: 400 });
      }
-     if (!["Admin", "User"].includes(role)) {
+     if (!["Admin", "Employee"].includes(role)) {
          return NextResponse.json({ error: "Invalid role" }, { status: 400 });
      }
      
@@ -22,7 +22,7 @@ export async function POST(request: NextRequest) {
          ]
      });
 
-     if (existingUser) {
+     if (existingUser.length > 0) {
          return NextResponse.json({ error: "User already exists" }, { status: 400 });
      }
 

@@ -1,23 +1,29 @@
-import mongoose from 'mongoose';
+import mongoose, { Document, Model, Schema } from "mongoose";
 
+export interface IFeedback extends Document {
+  employeeId: mongoose.Types.ObjectId;
+  feedbackText: string;
+  createdAt: Date;
+  updatedAt: Date;
+}
 
-
-const feedbackSchema = new mongoose.Schema({
-  employeeId: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'Employee',
-    required: true,
-  },
-    feedbackText: {
-        type: String,
-        required: true,
+const feedbackSchema: Schema<IFeedback> = new mongoose.Schema(
+  {
+    employeeId: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "User", 
+      required: true,
     },
-    createdAt: {
-        type: Date,
-        default: Date.now,
-    },}, {
-  timestamps: true,
-    });
+    feedbackText: {
+      type: String,
+      required: true,
+    },
+  },
+  {
+    timestamps: true,
+  }
+);
 
-const Feedback = mongoose.model('Feedback', feedbackSchema);
+const Feedback: Model<IFeedback> = mongoose.models.Feedback || mongoose.model<IFeedback>("Feedback", feedbackSchema);
+
 export default Feedback;
