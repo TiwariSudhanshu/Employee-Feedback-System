@@ -7,7 +7,7 @@ import {
 } from "@/utils/generateTokens";
 
 import {IUser} from "@/models/user.models";
-export async function POST(request: NextRequest, response: NextResponse) {
+export async function POST(request: NextRequest): Promise<NextResponse>  {
   try {
     await connectDb();
     const data = await request.json();
